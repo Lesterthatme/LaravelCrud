@@ -1,6 +1,12 @@
 <x-layout>
     <main class="h-[90vh] w-screen bg-gray-600/50 pt-10">
-
+        @if (session('success'))
+            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
+                <p class="font-bold">Success!</p>
+                <p>{{ session('success') }}</p>
+            </div>
+        @endif
+       
         <table class="border border-collapse w-screen  table-auto">
             <thead>
                 <tr>
@@ -19,8 +25,8 @@
                         <td class="border">{{ $user->section }}</td>
                         <td class="border">{{ $user->age }}</td>
                         <td class="border flex justify-center gap-2">
-                            <button
-                                class="border bg-blue-200 p-2 font-semibold rounded-xl cursor-pointer">Update</button>
+                            <button class="border bg-blue-200 p-2 font-semibold rounded-xl cursor-pointer">
+                                <a href="{{ route('CRUD.edit', $user->id) }}">Update</a></button>
                             <button
                                 class="border bg-blue-200 p-2 font-semibold rounded-xl cursor-pointer">Delete</button>
                         </td>
