@@ -6,7 +6,7 @@
                 <p>{{ session('success') }}</p>
             </div>
         @endif
-       
+
         <table class="border border-collapse w-screen  table-auto">
             <thead>
                 <tr>
@@ -27,8 +27,13 @@
                         <td class="border flex justify-center gap-2">
                             <button class="border bg-blue-200 p-2 font-semibold rounded-xl cursor-pointer">
                                 <a href="{{ route('CRUD.edit', $user->id) }}">Update</a></button>
-                            <button
-                                class="border bg-blue-200 p-2 font-semibold rounded-xl cursor-pointer">Delete</button>
+                            
+                                <form action="{{ route('CRUD.delete', $user->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="border bg-blue-200 p-2 font-semibold rounded-xl cursor-pointer" type="submit">Delete</button>
+                                </form>
+                            
                         </td>
                     </tr>
                 @endforeach

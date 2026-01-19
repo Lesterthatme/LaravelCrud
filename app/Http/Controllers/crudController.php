@@ -19,6 +19,7 @@ class crudController extends Controller
 
     function createData(Request $request)
     {
+        //without validation
         Crud::create([
             'name'    => $request->name,
             'section' => $request->section,
@@ -41,15 +42,21 @@ class crudController extends Controller
         $specificData->age = $request->age;
 
         if (!$specificData->isDirty()) {
-
             return redirect()->back()->with('info', 'no changes detected.');
         }
 
         $specificData->save();
-
+        
         // $data = Crud::orderBy('id', 'asc')->get();
         // return view('welcome', compact('data'));
 
         return redirect()->route('CRUD.home')->with('success', 'Updated!');
+    }
+
+    function deleteData($id)
+    {
+        Crud::findOrFail($id)->delete();
+
+        return redirect()->route('CRUD.home')->with('success', 'deleted!');
     }
 }

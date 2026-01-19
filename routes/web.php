@@ -34,4 +34,4 @@ Route::get(
 
 Route::put('/crud.save/{id}', [crudController::class, 'editData'])->name('CRUD.edit.save');
 
-
+Route::delete('/crud.save/{id}', [crudController::class, 'deleteData'])->name('CRUD.delete');
